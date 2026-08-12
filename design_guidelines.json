@@ -1,0 +1,119 @@
+{
+  "theme": "The Obsidian Lab - Dark, cinematic, organic meets digital. A premium, high-tech biotechnology aesthetic prioritizing negative space, sharp contrasts, and laboratory-grade precision.",
+  "colors": {
+    "background": {
+      "primary": "#050505",
+      "secondary": "#0A0A0C",
+      "tertiary": "#121418"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "muted": "#71717A"
+    },
+    "accents": {
+      "primary": "#D4FF00",
+      "primary_description": "Fluorescent Lime (CRISPR Green) - Use strictly for critical data, small high-tech UI lines, or primary CTA hover states. Do NOT use as a large background.",
+      "secondary": "#00F0FF",
+      "secondary_description": "Bioluminescence Cyan - Use for subtle 3D lighting or deep background glows.",
+      "border": "rgba(255, 255, 255, 0.08)",
+      "surface": "rgba(255, 255, 255, 0.02)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "headings": "'Syne', sans-serif",
+      "body": "'Manrope', sans-serif",
+      "mono": "'Space Mono', monospace"
+    },
+    "scale": {
+      "hero_h1": "text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.9]",
+      "h2": "text-4xl md:text-5xl lg:text-6xl tracking-tight leading-none",
+      "h3": "text-2xl md:text-3xl tracking-tight",
+      "overline": "text-xs tracking-[0.2em] uppercase font-mono text-white/50",
+      "body": "text-base md:text-lg leading-relaxed text-zinc-400"
+    },
+    "import_commands": "Ensure to add @fontsource/syne, @fontsource/manrope, and @fontsource/space-mono or import from Google Fonts in index.css"
+  },
+  "visual_enhancers": {
+    "surfaces": "Use 'Optical Clarity' Glassmorphism only for the fixed header (bg-black/40 backdrop-blur-xl border-b border-white/10). All other cards should be flat, brutalist rectangles (bg-white/[0.02] border border-white/5) with NO border-radius (rounded-none).",
+    "borders": "Expose the skeleton. Use 1px borders (border-white/10) to create a 'technical grid' feel across sections.",
+    "textures": "Add a subtle absolute full-screen noise/grain SVG overlay with pointer-events-none and opacity-20 to kill the digital flatness."
+  },
+  "sections_blueprint": [
+    {
+      "name": "Navigation",
+      "layout": "Fixed top, z-50, glassmorphism. Left: Logo (Syne font, bold). Right: Mono-font links + minimal CTA button.",
+      "interactions": "Links hover change to Fluorescent Lime."
+    },
+    {
+      "name": "Hero Section (Kinetic)",
+      "layout": "h-screen relative flex items-center overflow-hidden. Text container z-10 w-full px-8 md:px-24. 3D Canvas absolute inset-0 z-0.",
+      "content": "Massive H1 split into multiple lines. Overline mono text above H1.",
+      "interactions": "SIGNATURE ON-LOAD: Use Framer Motion for a line-by-line masked text reveal. y: 100 to y: 0 with clipPath. 3D element slow rotation.",
+      "3d_element": "Use @react-three/fiber and @react-three/drei to render a slow-rotating particle sphere or abstract biological mesh (representing a cell/molecule). If complex, use a fallback layered parallax."
+    },
+    {
+      "name": "About / The Manifesto",
+      "layout": "Massive vertical padding (py-32). Grid layout (grid-cols-1 md:grid-cols-12). Left side (col-span-4): Numbered chapters in Space Mono (e.g., '01 / ORIGIN'). Right side (col-span-8): Large Syne text revealing concept.",
+      "interactions": "Scroll-triggered text color fill or Framer Motion whileInView line-up reveals."
+    },
+    {
+      "name": "Technology (Tetris Bento Grid)",
+      "layout": "py-24 px-8 md:px-24. grid-cols-1 md:grid-cols-12 gap-6. Create severe asymmetry. 1 hero block (col-span-8, row-span-2), 2 smaller technical blocks (col-span-4).",
+      "styling": "Cards are dark, sharp-edged. Inside hero block: Place the abstract liquid macro image with an overlay."
+    },
+    {
+      "name": "Editorial Marquee",
+      "layout": "py-20 border-y border-white/10 overflow-hidden bg-[#0A0A0C].",
+      "interactions": "Use react-fast-marquee. Massive text (text-7xl), outline only (text-transparent stroke-white style, or webkit-text-stroke). Words: 'GENOMIC EDITING — SYNTHETIC BIOLOGY — CELLULAR REPROGRAMMING —'."
+    },
+    {
+      "name": "Statistics / Impact",
+      "layout": "Grid of 3 to 4 massive numbers. text-7xl font-mono text-[#D4FF00].",
+      "interactions": "Framer Motion count-up effect on scroll into view."
+    },
+    {
+      "name": "Final CTA",
+      "layout": "py-32 flex flex-col items-center justify-center text-center border-t border-white/10 bg-gradient-to-b from-transparent to-[#D4FF00]/5.",
+      "styling": "Massive heading. Button: Pill-shaped, bg-[#D4FF00] text-black hover:scale-105 transition-transform, glowing shadow."
+    }
+  ],
+  "media": {
+    "images": {
+      "hero_fallback_or_texture": {
+        "url": "https://images.unsplash.com/photo-1761937841816-a00b8fffa8fb",
+        "description": "Abstract blue/black fluid art. Use as a blended background texture (opacity-30 mix-blend-screen) if 3D is not fully covering the hero."
+      },
+      "manifesto_scientist": {
+        "url": "https://images.pexels.com/photos/17571899/pexels-photo-17571899.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Portrait of scientist in dark lab. Use in the About/Manifesto section, placed in a clipped, sharp asymmetrical frame (e.g., aspect-[3/4] w-72)."
+      },
+      "technology_macro": {
+        "url": "https://images.unsplash.com/photo-1572884267966-02340ebc90ac?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NTN8MHwxfHNlYXJjaHwyfHxtaWNyb3Njb3BlJTIwbGVucyUyMG1hY3JvfGVufDB8fHx8MTc4MzA5NDY0NHww&ixlib=rb-4.1.0&q=85",
+        "description": "Microscope lens macro shot. Use inside the primary Bento Grid block as a background image with a dark gradient overlay (bg-black/60)."
+      }
+    }
+  },
+  "motion_and_animations": {
+    "libraries": ["framer-motion", "lenis", "react-fast-marquee", "@react-three/fiber", "@react-three/drei", "three"],
+    "smooth_scroll": "Wrap the app in Lenis for premium momentum scrolling. This is MANDATORY for an Awwwards feel.",
+    "micro_interactions": "All buttons must have scale/transform transitions. Use hover:bg-[#D4FF00] hover:text-black for primary interactive elements.",
+    "scroll_reveals": "Do NOT fade in whole sections at once. Use staggered Framer Motion variants. Elements should slide up slightly (y: 30 to y: 0) while fading in."
+  },
+  "accessibility": {
+    "contrast": "Ensure white text on #050505 background. Muted text must be at least #8B949E to pass APCA/WCAG on black.",
+    "motion": "Respect prefers-reduced-motion CSS media query to disable Lenis and Framer Motion for sensitive users.",
+    "data_testid": "Add data-testid attributes to all buttons, navigation links, and major section wrappers for testing."
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic outputs. Break this. Do not build standard Vercel-like SaaS cards for this. It is a premium, cinematic biotech site.",
+    "Do NOT use standard Shadcn for layout. Build custom raw HTML/Tailwind HTML structures with Framer Motion.",
+    "Do NOT use border-radius for cards. Use sharp edges (rounded-none) to convey scientific precision.",
+    "Use 2-3x more spacing than feels comfortable. Sections should have py-24 or py-32.",
+    "Implement Lenis smooth scrolling inside a custom hook or component and wrap the app.",
+    "NEVER use generic placeholder text or dummy image URLs. Use the provided image URLs.",
+    "CRITICAL: Do not use complete transparent background in header. Use glassmorphism (backdrop-blur with solid color opacity).",
+    "All interactive elements MUST include a data-testid attribute."
+  ]
+}
