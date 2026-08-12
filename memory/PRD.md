@@ -14,21 +14,27 @@ Task 01 — Design and develop a premium, animation-driven biotechnology landing
 - Components in `/app/frontend/src/components/landing/`: SmoothScroll, DNAHelix, Navbar, Hero, Manifesto, Technology, EditorialMarquee, Capabilities, Impact, FinalCTA, Footer.
 
 ## Implemented (2026-06)
-- Kinetic Hero: masked line-by-line headline reveal, live rotating DNA-helix canvas with depth shading + glowing nodes + mouse parallax, dual CTAs.
-- Glassmorphism sticky nav with mobile menu; anchor links wired to Lenis smoothScroll.
-- Manifesto (About/Innovation): numbered chapters (01/02/03) + sticky clipped scientist portrait.
-- Technology: asymmetric bento grid with macro imagery + hover treatments.
-- Editorial marquee (outlined + solid alternating giant text).
-- Capabilities: 6-service technical grid with icon micro-interactions.
+- Kinetic Hero: masked line-by-line headline reveal, **real interactive 3D DNA double-helix (Three.js / react-three-fiber) that visitors can drag to rotate** with auto-spin + inertia, glowing lime/cyan spheres and bonds, dual CTAs.
+- Glassmorphism sticky nav with mobile menu; **active-section highlighting (IntersectionObserver + animated underline)**; Cases link added; anchor links wired to Lenis smoothScroll.
+- **Fixed top scroll-progress bar** (framer-motion useScroll + spring).
+- Manifesto (About/Innovation): numbered chapters + sticky clipped scientist portrait.
+- Technology: asymmetric bento grid with macro imagery.
+- Editorial marquee; Capabilities 6-service grid.
+- **Case Studies / Breakthroughs section**: 3 program cards with imagery, tags, and headline metrics.
 - Impact: 4 count-up statistics on scroll-into-view.
-- Final CTA with glow + gradient; Footer.
-- Accessibility: prefers-reduced-motion disables Lenis/canvas motion & count-ups; data-testid on all interactive/section elements; lazy-loaded images.
-- Fully responsive (mobile/tablet/desktop) via Tailwind breakpoints.
+- **Working Contact form** in Final CTA: name/email/organization/message → POST `/api/contact` (MongoDB `contacts` collection), loading + success + validation states. GET `/api/contact` lists submissions.
+- Accessibility: prefers-reduced-motion disables Lenis/3D auto-motion & count-ups; data-testid on all interactive/section elements; lazy-loaded images.
+- Fully responsive across mobile/tablet/desktop.
+
+## Backend
+- FastAPI + MongoDB. Endpoints: `GET /api/`, `POST/GET /api/status`, `POST/GET /api/contact`.
+- Contact model: id, name, email, organization?, message, created_at (ISO).
 
 ## Verification
-- Frontend compiles cleanly, no runtime/console errors.
-- All remote images return HTTP 200.
-- Hero verified via screenshot (all effects rendering). Lower sections verified via clean compile + error-free logs (screenshot tool only returns nav-frame, could not visually capture scrolled sections).
+- Frontend compiles cleanly, no runtime/console errors (only benign WebGL perf warnings).
+- Contact API verified end-to-end via curl: POST creates records, GET lists them.
+- Hero + 3D helix rendering confirmed via screenshot.
+- NOTE: the screenshot tool in this environment only navigates + captures (it does not execute scripted scroll/fill interactions), so lower sections + the form's browser click-flow were verified via clean compile + verified backend rather than an automated UI click-through.
 
 ## Backlog
 - P1: Working contact/newsletter form with backend persistence.

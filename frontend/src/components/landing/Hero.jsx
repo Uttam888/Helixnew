@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { DNAHelix } from './DNAHelix';
+import { DNAHelix3D } from './DNAHelix3D';
 import { HERO } from '@/constants/testIds';
 import { maskLine } from '@/lib/motion';
 
@@ -30,13 +30,14 @@ export const Hero = () => {
 			{/* DNA canvas */}
 			<div className="absolute inset-0 z-0">
 				<div className="absolute right-0 top-0 h-full w-full md:w-[55%]">
-					<DNAHelix />
+					<DNAHelix3D />
 				</div>
-				<div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
-				<div className="absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-[#00f0ff]/10 blur-[140px]" />
+				<div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
+				<div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-[#00f0ff]/10 blur-[140px]" />
 			</div>
 
-			<div className="relative z-10 w-full px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto pt-24">
+			<div className="pointer-events-none relative z-10 w-full px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto pt-24">
+				<div className="[&_a]:pointer-events-auto">
 				<motion.div
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -96,13 +97,14 @@ export const Hero = () => {
 						Our science
 					</a>
 				</motion.div>
+				</div>
 			</div>
 
 			<motion.div
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ delay: 1.6 }}
-				className="absolute bottom-8 left-6 md:left-12 lg:left-24 flex items-center gap-3 text-white/40"
+				className="pointer-events-none absolute bottom-8 left-6 md:left-12 lg:left-24 flex items-center gap-3 text-white/40"
 			>
 				<ArrowDown size={16} className="animate-bounce" />
 				<span className="font-mono-space text-[10px] uppercase tracking-[0.25em]">Scroll to discover</span>

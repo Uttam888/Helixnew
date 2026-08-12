@@ -4,19 +4,37 @@ import { Menu, X } from 'lucide-react';
 import { NAV } from '@/constants/testIds';
 
 const links = [
-	{ label: 'About', href: '#about', tid: NAV.linkAbout },
-	{ label: 'Technology', href: '#technology', tid: NAV.linkTech },
-	{ label: 'Impact', href: '#impact', tid: NAV.linkImpact },
+	{ label: 'About', href: '#about', id: 'about', tid: NAV.linkAbout },
+	{ label: 'Technology', href: '#technology', id: 'technology', tid: NAV.linkTech },
+	{ label: 'Cases', href: '#cases', id: 'cases', tid: NAV.linkCases },
+	{ label: 'Impact', href: '#impact', id: 'impact', tid: NAV.linkImpact },
 ];
 
 export const Navbar = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const [open, setOpen] = useState(false);
+	const [active, setActive] = useState('');
 
 	useEffect(() => {
 		const onScroll = () => setScrolled(window.scrollY > 40);
 		window.addEventListener('scroll', onScroll);
 		return () => window.removeEventListener('scroll', onScroll);
+	}, []);
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) setActive(entry.target.id);
+				});
+			},
+			{ rootMargin: '-45% 0px -50% 0px' }
+		);
+		links.forEach((l) => {
+			const el = document.getElementById(l.id);
+			if (el) observer.observe(el);
+		});
+		return () => observer.disconnect();
 	}, []);
 
 	return (
@@ -42,15 +60,23 @@ export const Navbar = () => {
 					<span className="text-[#d4ff00]">.</span>
 				</a>
 
-				<div className="hidden md:flex items-center gap-10">
+				<div className="hidden md:flex items-center gap-9">
 					{links.map((l) => (
 						<a
 							key={l.href}
 							href={l.href}
 							data-testid={l.tid}
-							className="font-mono-space text-xs uppercase tracking-[0.15em] text-white/60 hover:text-[#d4ff00] transition-colors"
+							className={`relative font-mono-space text-xs uppercase tracking-[0.15em] transition-colors ${
+								active === l.id ? 'text-[#d4ff00]' : 'text-white/60 hover:text-white'
+							}`}
 						>
 							{l.label}
+							{active === l.id && (
+								<motion.span
+									layoutId="nav-active"
+									className="absolute -bottom-1.5 left-0 right-0 h-px bg-[#d4ff00]"
+								/>
+							)}
 						</a>
 					))}
 					<a
